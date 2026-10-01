@@ -1,7 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:qr_flutter/qr_flutter.dart';
 
 int opcionBody = 0;
-List<String> hobbies = ['Programar', 'Videojuegos', 'Ciclismo', 'Lectura', 'Música', 'Café'];
+List<String> hobbies = [
+  "Salir a pasear",
+  'Programar con Dart',
+  'Senderismo',
+  'Ir a la playa',
+  "Música variadita",
+  "Anime",
+];
 
 void main() {
   runApp(const MiPortfolio());
@@ -11,138 +19,232 @@ class MiPortfolio extends StatefulWidget {
   const MiPortfolio({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _MiPortfolioState createState() => _MiPortfolioState();
 }
 
 class _MiPortfolioState extends State<MiPortfolio> {
   @override
   Widget build(BuildContext context) {
-    // Malas prácticas: Recomputar dimensiones en cada build
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
 
-    // Sin Scaffold: Sin estructura base ni Material de fondo automático
-    return 
-      MaterialApp(
-    home: SafeArea(
-      child: Container(
+    var cabeso = Container(
+      height: height * 0.05,
+        width: width,
+          color: Colors.blue,
+            child: Center(
+              child: Text(
+                "Este es mi portfolio",
+                textDirection: TextDirection.ltr,
+                style: TextStyle(
+                  fontSize: 20,
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  decoration: TextDecoration.none,
+                ),
+            ),
+        ),
+    );
+
+    return MaterialApp(
+      home: Container(
         color: Colors.white,
         child: Column(
           children: [
-            // 1. Cabecera (10%)
+            cabeso,
             Container(
-              height: height * 0.10,
-              width: width,
-              color: Colors.blue,
-              child: Center(
-                child: Text(
-                  "Este es mi portfolio",
-                  // Sin Scaffold/Material, el texto necesita su propia dirección e Icon/Style
-                  textDirection: TextDirection.ltr,
-                  style: TextStyle(
-                    fontSize: 20, 
-                    color: Colors.white, 
-                    fontWeight: FontWeight.bold,
-                    decoration: TextDecoration.none, // Evita doble subrayado amarillo
-                  ),
-                ),
-              ),
-            ),
-
-            // 2. Subcabecera (10%)
-            Container(
-              height: height * 0.05,
+              height: height * 0.15,
               width: width,
               color: Colors.grey[200],
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
-                    width: 40,
-                    height: 40,
+                    width: 90,
+                    height: 90,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       image: DecorationImage(
-                        image: NetworkImage('https://via.placeholder.com/150'),
                         fit: BoxFit.cover,
+                        image: NetworkImage(
+                          opcionBody == 1
+                              ? "https://images.teamtalk.com/content/uploads/2022/12/14171716/Sofyan-Amrabat-reacting-for-Morocco-at-the-World-Cup.jpg"
+                              : "https://forbesme-prestaging-media.s3.us-east-2.amazonaws.com/lists/uploads/2023/11/16065346/Sofyan-Amrabat.jpg",
+                        ),
                       ),
                     ),
                   ),
-                  Container(width: 15), // Mala práctica: Container para espacio
-                  Text(
-                    "Soy profe y me gusta Dart", 
+                  Container(width: 15),
+                  Expanded(child:                   Text(
+                    "Soy profe y me gusta mi trabajo aunque a veces me de por enrevesar prácticas para mis queridos alumnos",
                     textDirection: TextDirection.ltr,
-                    style: TextStyle(fontSize: 16, color: Colors.black, decoration: TextDecoration.none),
+                    style: TextStyle(fontSize: 16, color: Colors.black, decoration: TextDecoration.none
+                ),
+                            ),
                   ),
                 ],
               ),
-            ),
-
-            // 3. Cuerpo (70%) - Ternario sin Scaffold
+            ), // Subcabeso
             Container(
               height: height * 0.70,
               width: width,
-              padding: EdgeInsets.all(10),
-              child: opcionBody == 0
-                  ? Column(
+              padding: EdgeInsets.all(10), child: opcionBody == 0
+              ?Row(
+                spacing: 50,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Column(
+                  mainAxisAlignment: MainAxisAlignment.center, children: [
+                    CosaRandom(textasion: hobbies[0]),
+                    const SizedBox(height: 10),
+                    CosaRandom(textasion: hobbies[1]),
+                    const SizedBox(height: 10),
+                    CosaRandom(textasion: hobbies[2]),
+                    const SizedBox(height: 10),
+                    CosaRandom(textasion: hobbies[3]),
+                    const SizedBox(height: 10),
+                    const CosaRandom(textasion: "'los Videojuegos'"),
+                    const SizedBox(height: 10),
+                    const CosaRandom(textasion: "Domingos de misa"),
+                  ],
+                ),
+                    Column(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(hobbies[0], textDirection: TextDirection.ltr, style: TextStyle(color: Colors.black, decoration: TextDecoration.none)),
-                        Container(height: 10),
-                        Text(hobbies[1], textDirection: TextDirection.ltr, style: TextStyle(color: Colors.black, decoration: TextDecoration.none)),
-                        Container(height: 10),
-                        Text(hobbies[2], textDirection: TextDirection.ltr, style: TextStyle(color: Colors.black, decoration: TextDecoration.none)),
-                      ],
+                        children: [const SizedBox(height: 10),
+                          const CosaRandom(textasion: "El monte con lluvia"), const SizedBox(height: 10),
+                          CosaRandom(textasion: hobbies[4]), const SizedBox(height: 10),
+                          CosaRandom(textasion: hobbies[5]), const SizedBox(height: 10),
+                          const CosaRandom(textasion: "Ducharme"), const SizedBox(height: 10),
+                          const CosaRandom(textasion: "Ir de cenita romántica"), const SizedBox(height: 10),
+                          const CosaRandom(textasion: "Viajar"),
+                        ],
                     )
-                  : Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(hobbies[3], textDirection: TextDirection.ltr, style: TextStyle(color: Colors.black, decoration: TextDecoration.none)),
-                        Container(height: 10),
-                        Text(hobbies[4], textDirection: TextDirection.ltr, style: TextStyle(color: Colors.black, decoration: TextDecoration.none)),
-                        Container(height: 10),
-                        Text(hobbies[5], textDirection: TextDirection.ltr, style: TextStyle(color: Colors.black, decoration: TextDecoration.none)),
+                    ],
+                  )
+                  : Column(mainAxisAlignment: MainAxisAlignment.spaceAround, crossAxisAlignment: CrossAxisAlignment.center, spacing: 10, 
+                  children: [
+                    Image.asset(
+                      "assets/images/firefox_logo.webp",
+                      width: 180,
+                      fit: BoxFit.contain,
+                    ),     Text(
+                        "¡Este navegador mola más!",
+                        textDirection: TextDirection.ltr,
+                        textAlign: TextAlign.center, 
+                        style: const TextStyle(
+                          textBaseline: TextBaseline.alphabetic,
+                          decoration: TextDecoration.none,
+                          fontSize: 30,
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                  
+                    Center(
+      child: Container(
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: Colors.blue,
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: QrImageView(
+          data: "https://github.com/adhernea/",
+          version: QrVersions.auto,
+          size: 200.0,
+          backgroundColor: Colors.white,
+          eyeStyle: const QrEyeStyle(
+            eyeShape: QrEyeShape.square,
+            color: Colors.black,
+          ),
+          dataModuleStyle: const QrDataModuleStyle(
+            dataModuleShape: QrDataModuleShape.square,
+            color: Colors.black,
+          ),
+        ),
+      ),
+    )
                       ],
                     ),
-            ),
-
-            // 4. Botones footer (10%)
-            Container(
-              height: height * 0.10,
-              width: width,
-              color: Colors.black12,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  // Sin Scaffold, los botones necesitan envoltorio Material para los efectos visuales
-                  GestureDetector(
-                    onTap: () {
-                      opcionBody = 0;
-                      setState(() {});
-                    },
-                    child: Container(
-                      padding: EdgeInsets.all(10),
-                      color: Colors.blue,
-                      child: Text("Hobbies 1", textDirection: TextDirection.ltr, style: TextStyle(color: Colors.white, decoration: TextDecoration.none)),
+            ), // Cuerpitos
+            Container(height: height * 0.10,width: width,
+            color: Colors.black12,
+            child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+              ClipOval(
+                child: GestureDetector(
+                  onTap: () {
+                    opcionBody = 0; setState(() {});
+                  },
+                  child: Container(
+                    width: 150,
+                    height: 60,
+                    color: Colors.blue,
+                        child: FittedBox(
+                        fit: BoxFit.scaleDown,
+                    child: Text("Mis jobis", textDirection: TextDirection.ltr,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 24, // Pon un tamaño base grande, FittedBox lo encajará
+                          decoration: TextDecoration.none,
+                        ),
+                      ),
+                        ),
+                      ),
                     ),
                   ),
-                  GestureDetector(
-                    onTap: () {
-                      opcionBody = 1;
-                      setState(() {});
-                    },
-                    child: Container(
-                      padding: EdgeInsets.all(10),
-                      color: Colors.blue,
-                      child: Text("Hobbies 2", textDirection: TextDirection.ltr, style: TextStyle(color: Colors.white, decoration: TextDecoration.none)),
+                  Material(
+                    child: GestureDetector(
+                    onTap: () {opcionBody = 1;
+                    setState(() {});},
+                        child: Container(
+                        padding: EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                          color: Colors.blue,
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                          child: Text(
+                            style: TextStyle(color: Colors.white, decoration: TextDecoration.none),
+                            "My repositorio", textDirection: TextDirection.ltr,
+                          ),
+                        ),
                     ),
                   ),
                 ],
               ),
-            ),
+            ), // Fúter de botones
           ],
         ),
       ),
-    )  );
+    );
+  }
+}
+
+class CosaRandom extends StatelessWidget {
+final String textasion;
+
+const CosaRandom({super.key, required this.textasion});
+
+  final espaciadosStail = const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0);
+  final textoStails = const TextStyle(color: Colors.black, decoration: TextDecoration.none, fontSize: 16);
+
+  @override
+  Widget build(BuildContext context) {
+     return Container(
+  width: 150,height: 50,
+      decoration: BoxDecoration(
+        color: Colors.blue[50],
+        border: Border.all(color: Colors.grey[800]!, width: 2),
+      ),
+      child: Center(child: Padding(
+        padding: espaciadosStail,
+          child: FittedBox(fit: BoxFit.scaleDown,
+          child: Text(textasion, textDirection: TextDirection.ltr,
+          style: textoStails,
+          ),
+          ),
+        ),
+      ),
+    );
   }
 }
