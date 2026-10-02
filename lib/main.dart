@@ -129,7 +129,7 @@ class _MiPortfolioState extends State<MiPortfolio> {
                       width: 180,
                       fit: BoxFit.contain,
                     ),     Text(
-                        "¡Este navegador mola más!",
+                        "¡El navegador Firefox mola más!",
                         textDirection: TextDirection.ltr,
                         textAlign: TextAlign.center, 
                         style: const TextStyle(
