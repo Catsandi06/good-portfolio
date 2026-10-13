@@ -8,19 +8,19 @@ Aplicación móvil desarrollada con Flutter para presentar mi perfil, mis aficio
 
 La pantalla principal muestra el perfil y una cuadrícula de aficiones. La tarjeta de gatos abre una sección interactiva con memes.
 
-![Pantalla de hobbies](docs/screenshots/portfolio-hobbies.png)
+![Pantalla de hobbies en Android](docs/screenshots/portfolio-hobbies-android.png)
 
 ### Mi repositorio
 
 Incluye una ilustración de Sandi Proto y un código QR que enlaza al perfil de GitHub.
 
-![Pantalla del repositorio](docs/screenshots/portfolio-repository.png)
+![Pantalla del repositorio en Android](docs/screenshots/portfolio-repository-android.png)
 
 ### Memes de gatos
 
 Sección accesible desde la tarjeta **Los gatos**, con contenido remoto y navegación de vuelta a la pantalla principal.
 
-![Pantalla de memes de gatos](docs/screenshots/portfolio-cat-memes.png)
+![Pantalla de memes de gatos en Android](docs/screenshots/portfolio-cat-memes-android.png)
 
 ## Funcionalidades
 
