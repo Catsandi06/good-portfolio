@@ -48,7 +48,7 @@ Sección accesible desde la tarjeta **Los gatos**, con contenido remoto y navega
 ## Instalación y ejecución
 
 ```bash
-git clone https://github.com/adhernea/good-portfolio.git
+git clone https://github.com/Catsandi06/good-portfolio.git
 cd good-portfolio
 flutter pub get
 flutter run
